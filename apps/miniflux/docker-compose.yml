@@ -2,8 +2,6 @@ services:
   miniflux:
     container_name: miniflux
     image: miniflux/miniflux:latest
-    ports:
-      - "${APP_PORT}:8080"
     depends_on:
       miniflux-db:
         condition: service_healthy
