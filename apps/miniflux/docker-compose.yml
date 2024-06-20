@@ -1,11 +1,14 @@
 services:
   miniflux-app:
+    container_name: miniflux-app
     image: miniflux/miniflux:latest
     ports:
       - "${APP_PORT}:8080"
     depends_on:
       miniflux-db:
         condition: service_healthy
+    networks:
+      - tipi_main_network
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@miniflux-db/${POSTGRES_DB}?sslmode=disable
       - RUN_MIGRATIONS=1
@@ -15,6 +18,7 @@ services:
       - PUID=1000
       - PGID=1000
   miniflux-db:
+    container_name: miniflux-db
     image: postgres:15
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
