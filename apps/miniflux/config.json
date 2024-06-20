@@ -1,0 +1,66 @@
+{
+  "$schema": "../schema.json",
+  "name": "Miniflux",
+  "available": true,
+  "exposable": true,
+  "port": 8080,
+  "id": "miniflux",
+  "tipi_version": 3,
+  "version": "2.1.3",
+  "categories": [
+    "utilities"
+  ],
+  "description": "Miniflux is a minimalist and opinionated feed reader.",
+  "short_desc": "Open source feed reader.",
+  "author": "miniflux",
+  "source": "https://github.com/miniflux/v2",
+  "website": "https://miniflux.net",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Miniflux Admin Username",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "ADMIN_USERNAME"
+    },
+    {
+      "type": "password",
+      "label": "Miniflux Admin Password",
+      "max": 50,
+      "min": 12,
+      "required": true,
+      "env_variable": "ADMIN_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Miniflux Postgres Username",
+      "max": 50,
+      "min": 3,
+      "required": false,
+      "default": "miniflux",
+      "env_variable": "POSTGRES_USER"
+    },
+    {
+      "type": "password",
+      "label": "Miniflux Postgres Password",
+      "max": 50,
+      "min": 12,
+      "required": true,
+      "env_variable": "POSTGRES_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Miniflux Postgres DBName",
+      "max": 50,
+      "min": 3,
+      "required": false,
+      "default": "miniflux",
+      "env_variable": "POSTGRES_DB"
+    }
+  ],
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ]
+}
