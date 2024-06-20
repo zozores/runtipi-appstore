@@ -1,6 +1,6 @@
 services:
-  miniflux-app:
-    container_name: miniflux-app
+  miniflux:
+    container_name: miniflux
     image: miniflux/miniflux:latest
     ports:
       - "${APP_PORT}:8080"
@@ -20,29 +20,29 @@ services:
       - PGID=1000
     labels:
       # Main
-      traefik.enable: true
-      traefik.http.middlewares.miniflux-app-web-redirect.redirectscheme.scheme: https
-      traefik.http.services.miniflux-app.loadbalancer.server.port: 80
+      traefik.enable: ${APP_EXPOSED}
+      traefik.http.middlewares.miniflux-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.miniflux.loadbalancer.server.port: 8080
       # Web
-      traefik.http.routers.miniflux-app-insecure.rule: Host(`${APP_DOMAIN}`)
-      traefik.http.routers.miniflux-app-insecure.entrypoints: web
-      traefik.http.routers.miniflux-app-insecure.service: miniflux-app
-      traefik.http.routers.archivebox-insecure.middlewares: miniflux-app-web-redirect
+      traefik.http.routers.miniflux-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.miniflux-insecure.entrypoints: web
+      traefik.http.routers.miniflux-insecure.service: miniflux
+      traefik.http.routers.miniflux-insecure.middlewares: miniflux-web-redirect
       # Websecure
-      traefik.http.routers.miniflux-app.rule: Host(`${APP_DOMAIN}`)
-      traefik.http.routers.miniflux-app.entrypoints: websecure
-      traefik.http.routers.miniflux-app.service: miniflux-app
-      traefik.http.routers.miniflux-app.tls.certresolver: myresolver
+      traefik.http.routers.miniflux.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.miniflux.entrypoints: websecure
+      traefik.http.routers.miniflux.service: miniflux-app
+      traefik.http.routers.miniflux.tls.certresolver: myresolver
       # Local domain
-      traefik.http.routers.miniflux-app-local-insecure.rule: Host(`miniflux-app.${LOCAL_DOMAIN}`)
-      traefik.http.routers.miniflux-app-local-insecure.entrypoints: web
-      traefik.http.routers.miniflux-app-local-insecure.service: miniflux-app
-      traefik.http.routers.miniflux-app-local-insecure.middlewares: miniflux-app-web-redirect
+      traefik.http.routers.miniflux-local-insecure.rule: Host(`miniflux.${LOCAL_DOMAIN}`)
+      traefik.http.routers.miniflux-local-insecure.entrypoints: web
+      traefik.http.routers.miniflux-local-insecure.service: miniflux
+      traefik.http.routers.miniflux-local-insecure.middlewares: miniflux-web-redirect
       # Local domain secure
-      traefik.http.routers.miniflux-app-local.rule: Host(`miniflux-app.${LOCAL_DOMAIN}`)
-      traefik.http.routers.miniflux-app-local.entrypoints: websecure
-      traefik.http.routers.miniflux-app-local.service: miniflux-app
-      traefik.http.routers.miniflux-app-local.tls: true
+      traefik.http.routers.miniflux-local.rule: Host(`miniflux.${LOCAL_DOMAIN}`)
+      traefik.http.routers.miniflux-local.entrypoints: websecure
+      traefik.http.routers.miniflux-local.service: miniflux
+      traefik.http.routers.miniflux-local.tls: true
 
   miniflux-db:
     container_name: miniflux-db
