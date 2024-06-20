@@ -16,8 +16,6 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - PUID=1000
-      - PGID=1000
     labels:
       # Main
       traefik.enable: ${APP_EXPOSED}

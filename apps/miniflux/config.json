@@ -3,7 +3,7 @@
   "name": "Miniflux",
   "available": true,
   "exposable": true,
-  "port": 80,
+  "port": 8080,
   "id": "miniflux",
   "tipi_version": 3,
   "version": "2.1.3",
