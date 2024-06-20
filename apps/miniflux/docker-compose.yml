@@ -14,6 +14,11 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - BASE_URL=https://${APP_DOMAIN}
+      - CLEANUP_ARCHIVE_UNREAD_DAYS=7
+      - CLEANUP_ARCHIVE_READ_DAYS=7
+      - CLEANUP_ARCHIVE_BATCH_SIZE=2500
+      - CLEANUP_REMOVE_SESSIONS_DAYS=7
     labels:
       # Main
       traefik.enable: ${APP_EXPOSED}
