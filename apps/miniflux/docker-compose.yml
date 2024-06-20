@@ -31,7 +31,7 @@ services:
       # Websecure
       traefik.http.routers.miniflux.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.miniflux.entrypoints: websecure
-      traefik.http.routers.miniflux.service: miniflux-app
+      traefik.http.routers.miniflux.service: miniflux
       traefik.http.routers.miniflux.tls.certresolver: myresolver
       # Local domain
       traefik.http.routers.miniflux-local-insecure.rule: Host(`miniflux.${LOCAL_DOMAIN}`)
